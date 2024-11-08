@@ -54,17 +54,17 @@ export default {
       password: '',
       emailError: false,
       loginError: false,
-      previousRoute: null // 이전 경로 저장
+      previousRoute: null 
     }
   },
   methods: {
     validateEmail() {
-      // 이메일 유효성 검사
+     
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
       this.emailError = this.email.length > 0 && !emailRegex.test(this.email)
     },
     handleLogin() {
-      this.validateEmail() // 이메일 유효성 재확인
+      this.validateEmail() 
       if (this.emailError) return
 
       const isLoginSuccessful = this.email === 'test@example.com' && this.password === 'password'
@@ -76,7 +76,6 @@ export default {
     }
   },
   mounted() {
-    // 이전 경로를 확인하여 저장
     this.previousRoute = this.$route.query.redirect || '/'
   }
 }

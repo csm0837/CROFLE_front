@@ -63,8 +63,8 @@ export default {
       return categories.includes(this.searchQuery);
     },
     productListStyle() {
-      const minCardWidth = 200; // 카드 최소 가로 길이
-      const maxCardWidth = 1; // 최대 너비
+      const minCardWidth = 200; 
+      const maxCardWidth = 1;
       return {
         gridTemplateColumns: `repeat(auto-fill, minmax(${minCardWidth}px, ${maxCardWidth}fr))`
       };
@@ -157,7 +157,6 @@ export default {
   margin: 2rem 0;
 }
 
-/* 반응형 설정 */
 @media (max-width: 992px) {
   .product-list {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));

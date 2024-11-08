@@ -126,8 +126,8 @@
   export default {
     data() {
       return {
-        step: 'selectType', // 현재 단계
-        userType: null, // 회원 유형: 일반회원 or 메이커
+        step: 'selectType', 
+        userType: null, 
         email: '',
         emailCode: '',
         nickname: '',
@@ -140,7 +140,7 @@
         businessNumber: '',
         agreeToTerms: false,
         birthdate: '',
-        gender: '', // 성별 (남성: 'male', 여성: 'female')
+        gender: '', 
         interest: [],
         categories: ['생활 가전', '주방가전', '스마트 가전', 'DIY', '엔터테인먼트', '웨어러블', '주변 기기']
       };
@@ -158,22 +158,16 @@
         }
       },
       sendEmailVerification() {
-        // 이메일 인증 코드 전송
       },
       openAddressAPI() {
-        // 다음 주소 API 호출
-        // 예시 코드
-        /* eslint-disable */
         new daum.Postcode({
           oncomplete: data => {
             this.postcode = data.zonecode;
             this.address = data.address;
           }
         }).open();
-        /* eslint-enable */
       },
       verifyBusinessNumber() {
-        // 사업자 확인 API 호출
       },
       toggleInterest(category) {
         if (this.interest.includes(category)) {
@@ -190,7 +184,6 @@
         }
       },
       completeRegistration() {
-        // 회원가입 완료 처리 및 로그인 페이지로 이동
         alert('회원가입이 완료되었습니다.');
         this.$router.push('/login');
       }

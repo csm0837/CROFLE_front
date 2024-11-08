@@ -4,7 +4,7 @@
       <img src="../assets/image/logo.png" alt="Logo" class="logo" />
       
       <div class="recovery-box">
-        <!-- 메뉴 탭: 아이디 찾기, 비밀번호 찾기 -->
+        <!--아이디 찾기, 비밀번호 찾기 -->
         <div class="tabs">
           <span :class="{ active: isIdRecovery }" @click="selectTab('id')">아이디 찾기</span>
           <span :class="{ active: !isIdRecovery }" @click="selectTab('password')">비밀번호 찾기</span>
@@ -47,8 +47,7 @@
         <router-link to="/login">로그인</router-link> | 
         <router-link to="/signup">회원가입</router-link>
       </div>
-  
-      <!-- 모달창 -->
+
       <div v-if="showModal" class="modal-overlay" @click="closeModal">
         <div class="modal-content">
           <p>{{ modalMessage }}</p>
@@ -79,13 +78,13 @@
         this.clearFields()
       },
       findId() {
-        // 예시: 아이디 찾기 성공 시 모달창 표시
+    
         this.modalMessage = "회원님의 아이디는 'example@example.com'입니다."
         this.modalButtonText = "확인"
         this.showModal = true
       },
       findPassword() {
-        // 예시: 비밀번호 재설정 시 성공/실패 메시지
+     
         if (this.email && this.name && this.phone) {
           this.modalMessage = "비밀번호 재설정 메일을 발송했습니다."
           this.modalButtonText = "로그인 화면으로"

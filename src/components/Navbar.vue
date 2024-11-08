@@ -25,7 +25,7 @@
       <button @click="handleSearch" class="search-button">검색</button>
     </div>
 
-    <!-- 로그인 또는 프로필 아이콘 -->
+    <!-- 로그인 프로필 아이콘 -->
     <div class="nav-actions">
       <div
         v-if="isLoggedIn"
@@ -59,7 +59,7 @@ export default {
   name: 'Navbar',
   data() {
     return {
-      isLoggedIn: false,
+      isLoggedIn: true,
       userName: '사용자 이름',
       userProfileImage: 'https://via.placeholder.com/120',
       searchQuery: '',
@@ -177,7 +177,7 @@ export default {
 
 .dropdown-menu {
   position: absolute;
-  top: 100%; /* 프로필 바로 아래에 붙여서 표시 */
+  top: 100%;
   right: 0;
   background-color: white;
   border: 1px solid #ddd;

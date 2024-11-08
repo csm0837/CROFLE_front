@@ -1,7 +1,7 @@
 <!-- src/App.vue -->
 <template>
   <div id="app">
-    <!-- 네비게이션 바와 푸터가 로그인/아이디 찾기/비밀번호 찾기 페이지에서 제외되도록 조건 추가 -->
+    
     <Navbar v-if="!hideNavAndFooter" />
     <div class="main-container">
       <router-view />
@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue'
-import Footer from './components/Footer.vue'
+import Navbar from './components/Navbar.vue';
+import Footer from './components/Footer.vue';
 
 export default {
   name: 'App',
@@ -22,11 +22,11 @@ export default {
   },
   computed: {
     hideNavAndFooter() {
-      // 로그인, 회원가입, 아이디/비밀번호 찾기 경로에서 네비게이션 바와 푸터 숨기기
-      return ['/login', '/signup', '/recovery'].includes(this.$route.path)
+
+      return ['/login', '/signup', '/recovery', '/admin/login'].includes(this.$route.path) || this.$route.path.startsWith('/admin');
     }
   }
-}
+};
 </script>
 
 <style>

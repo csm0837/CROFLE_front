@@ -9,9 +9,9 @@
     <!-- 카테고리 리스트 -->
     <CategoryList @selectCategory="handleCategoryClick" />
 
-    <!-- 3x3 그리드 레이아웃 -->
+
     <div class="grid-layout">
-      <!-- 라이브 상품 -->
+
       <div class="live-product">
         <h2>라이브 상품</h2>
         <div class="product-list">
@@ -173,7 +173,7 @@ export default {
   padding-left: 1rem;
 }
 
-/* 반응형 설정 */
+
 @media (max-width: 768px) {
   .grid-layout {
     grid-template-columns: 1fr;

@@ -1,63 +1,80 @@
 <!-- src/components/ProductItem.vue -->
 <template>
-    <div class="product-card">
-      <!-- 순위 표시 (랭킹 상품일 경우에만) -->
-      <div v-if="rank" class="rank-badge">{{ rank }}위</div>
-  
-      <!-- 상품 대표 이미지와 찜 버튼 -->
-      <div class="image-container">
-        <img :src="product.image" alt="Product Image" class="product-image" />
-        <button class="wishlist-button" @click="toggleWishlist">
-          <i :class="isWishlisted ? 'fas fa-heart' : 'far fa-heart'"></i>
-        </button>
-        <div v-if="product.isLive" class="live-badge">LIVE</div>
+  <div class="product-card">
+    <div v-if="rank" class="rank-badge">{{ rank }}위</div>
+
+    <!-- 상품 대표 이미지와 찜 버튼 -->
+    <div class="image-container">
+      <img :src="product.image" alt="Product Image" class="product-image" />
+      <button class="wishlist-button" @click="toggleWishlist">
+        <i :class="isWishlisted ? 'fas fa-heart' : 'far fa-heart'"></i>
+      </button>
+      <div v-if="product.isLive" class="live-badge">LIVE</div>
+    </div>
+
+    <!-- 상품 정보 -->
+    <div class="product-info">
+      <div class="top-info">
+        <span class="achievement">{{ product.achievement }}%</span>
+        <span class="end-date">{{ product.endDate }}</span>
       </div>
-  
-      <!-- 상품 정보 -->
-      <div class="product-info">
-        <div class="top-info">
-          <span class="achievement">{{ product.achievement }}%</span>
-          <span class="end-date">{{ product.endDate }}</span>
-        </div>
-        <h3 class="product-name">{{ product.name }}</h3>
-        <div class="bottom-info">
-          <span class="company-name">{{ product.company }}</span>
-          <span class="price">{{ product.price | currency }}</span>
-        </div>
+      <h3 class="product-name">{{ product.name }}</h3>
+      <div class="bottom-info">
+        <span class="company-name">{{ product.company }}</span>
+        <span class="price">{{ formatCurrency(product.price) }}</span>
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'ProductItem',
-    props: {
-      product: {
-        type: Object,
-        required: true
-      },
-      rank: {
-        type: Number,
-        default: null
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'ProductItem',
+  props: {
+    product: {
+      type: Object,
+      required: true,
+      // props 유효성 검사 추가
+      validator(value) {
+        return [
+          'image',
+          'name',
+          'price',
+          'company',
+          'achievement',
+          'endDate'
+        ].every(prop => prop in value)
       }
     },
-    data() {
-      return {
-        isWishlisted: false // 찜 상태 초기값
-      };
+    rank: {
+      type: Number,
+      default: null
+    }
+  },
+  data() {
+    return {
+      isWishlisted: false
+    };
+  },
+  methods: {
+    toggleWishlist() {
+      this.isWishlisted = !this.isWishlisted;
+      // 여기에 찜하기 이벤트 발생 추가
+      this.$emit('wishlist-toggle', {
+        productId: this.product.id,
+        isWishlisted: this.isWishlisted
+      });
     },
-    methods: {
-      toggleWishlist() {
-        this.isWishlisted = !this.isWishlisted;
-      }
-    },
-    filters: {
-      currency(value) {
-        return new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(value);
-      }
+    // filter를 method로 변경
+    formatCurrency(value) {
+      return new Intl.NumberFormat('ko-KR', { 
+        style: 'currency', 
+        currency: 'KRW' 
+      }).format(value);
     }
   }
-  </script>
+}
+</script>
   
   <style scoped>
   .product-card {
@@ -120,7 +137,7 @@
     color: white;
     font-weight: bold;
     padding: 0.3rem 0.5rem;
-    border-radius: 0 0 0 4px; /* 우측 상단 모서리 둥글게 */
+    border-radius: 0 0 0 4px; 
   }
   
   .product-info {

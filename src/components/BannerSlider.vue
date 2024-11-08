@@ -6,7 +6,7 @@
         <img v-for="(banner, index) in banners" :key="index" :src="banner" alt="Banner Image" class="slide-image" />
       </div>
   
-      <!-- 좌우 화살표 -->
+  
       <button @click="prevSlide" class="arrow left-arrow">&lt;</button>
       <button @click="nextSlide" class="arrow right-arrow">&gt;</button>
   
@@ -39,13 +39,14 @@
       }
     },
     mounted() {
-      // 3초마다 슬라이드 전환
+     
       setInterval(this.nextSlide, 3000);
     }
   }
   </script>
   
   <style scoped>
+  
   .banner-slider {
     position: relative;
     width: 800px;
@@ -56,7 +57,7 @@
   
   .slides {
     display: flex;
-    transition: transform 0.5s ease; /* 슬라이드 애니메이션 효과 */
+    transition: transform 0.5s ease; 
   }
   
   .slide-image {
